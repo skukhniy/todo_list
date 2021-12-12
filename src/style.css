@@ -1,0 +1,177 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    width:100%;
+}
+#header {
+    height: 90px;
+    width: 100%;
+    background-color: green;
+    display: grid;
+    grid-template-columns: repeat(5,minmax(0,1fr));
+
+}
+
+#add{
+    grid-column-start: 5;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 50%;
+    width:60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#add :hover{
+    cursor: pointer;
+}
+#add p{
+    margin: 0;
+    padding-bottom: 5px;
+    display: inline-block;
+    font-size: xxx-large;
+
+}
+
+#addProject{
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 50%;
+    text-align: center;
+    width:28px;
+}
+#addProject p{
+    margin: 0;
+    font-size: x-large;
+    font-weight: 500;
+}
+#header h1{
+    text-align: center;
+    grid-column-start: 3;
+    font-family: 'Courier New', Courier, monospace;
+}
+#dark-mode {
+    text-align: right;
+    grid-column-start: 4;
+    font-size: xxx-large;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right:10px;
+}
+#dark-mode p{
+    display: inline;
+}
+#dark-mode :hover{
+    cursor: pointer;
+}
+
+#sidebar {
+    height:100%;
+    width:20%;
+    background-color: rgba(3, 141, 3, 0.521);
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+#sidebar h2:hover{
+    background-color: rgba(3, 173, 3, 0.452);
+    cursor: pointer;
+    
+}
+
+#taskDisplay{
+    background-color: cadetblue;
+    height: 100%;
+    width: 80%;
+    float: right;
+    overflow-y: auto;
+}
+
+.task{
+    margin: 30px 40px 0px 40px;
+    border: solid;
+    padding:10px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 15px;
+}
+.task h2{
+    display: inline-block;
+}
+.task button{
+    float: right;
+    margin:15px;
+}
+.taskDate{
+}
+
+
+
+.modal{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%) scale(0);
+    transition:200ms ease-in-out;
+    border: 1px solid black;
+    border-radius:10px;
+    z-index:10;
+    background-color: white;
+    width:500px;
+    max-width:90%;
+    height:425px;
+}
+.form{
+    margin:0 auto;
+    text-align: left;
+    padding-right: 20%;
+}
+form{
+    padding: 10px;
+    margin: 0 auto;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin:0;
+}
+li{
+    margin-bottom: 5px;
+}
+label{
+    display: inline-block;
+    text-align: left;
+}
+input{
+    clear: both;
+    width: 80%;
+}
+#description{
+    width:100%
+}
+#date{
+    width: 35%;
+}
+#btnSubmit{
+    margin-top: 0px;
+    margin-right:25%;
+}
+
+.modal.active{
+    transform: translate(-50%,-50%) scale(1);
+}
+.modal-header {
+    padding: 10px 15px;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    border-bottom: 1px solid black;
+}
+.modal-header .closebutton{
+    cursor:pointer;
+    border:none;
+    outline:none;
+    background:none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
