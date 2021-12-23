@@ -3,6 +3,8 @@ import displayController from './controller.js'
 import './factory.js'
 import { localArray, todoFactory } from './factory.js'
 
+
+//functions for the modal window
 //will add an active class so the form pops up
 displayController.openModalButton.addEventListener('click',() =>{
     const modal = document.querySelector(displayController.openModalButton.dataset.modalTarget)

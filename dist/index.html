@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <title>To Do List</title>
     </head>
     <body>  
@@ -20,7 +21,7 @@
                 <button data-modal-close class="close-button">&times;</button>
             </div>
             <div class="form">
-                <form id="bookForm">
+                <form id="taskForm">
                     <ul>
                         <li>
                             <label for="title">Title:</label>
@@ -33,14 +34,6 @@
                         <li>
                             <label for="Date">Due Date:</label>
                             <input type="date" name="date" id="date">
-                        </li>
-                        <li>
-                            <label for="priority">Priority:</label>
-                            <select name = "dropdown" id="priority">
-                                <option value = "High">High</option>
-                                <option value = "Medium">Medium</option>
-                                <option value = "Low">Low</option>
-                             </select>
                         </li>
                         <li>
                             <label for="Project">Project:</label>
@@ -63,33 +56,49 @@
 
         <div id="taskDisplay">
             <div class="task" id="task1">
-                <h2>Task placeholder</h2>
-                <button>X</button>
-                <p class="taskDate">12.2.21</p>
-
+                <label>
+                    <input type="checkbox">
+                    <span>Task Placeholder</span>
+                </label>
+                <div class="taskRightAlign">
+                    <p class="taskDate">12.2.21</p>
+                    <button><i class="fa fa-pencil " ></i></button>
+                    <button>X</button>
+                </div>
             </div>
             <div class="task" id="task1">
-                <h2>Task placeholder</h2>
-                <p>This is the description placeholder</p>
+                <label>
+                    <input type="checkbox">
+                    <span>Task Placeholder</span>
+                </label>
+                <div class="taskRightAlign">
+                    <p class="taskDate">12.2.21</p>
+                    <button><i class="fa fa-pencil " ></i></button>
+                    <button>X</button>
+                </div>
             </div>
             <div class="task" id="task1">
-                <h2>Task placeholder</h2>
-                <p>This is the description placeholder</p>
+                <label>
+                    <input type="checkbox">
+                    <span>Task Placeholder</span>
+                </label>
+                <div class="taskRightAlign">
+                    <p class="taskDate">12.2.21</p>
+                    <button><i class="fa fa-pencil " ></i></button>
+                    <button>X</button>
+                </div>
             </div>
             <div class="task" id="task1">
-                <h2>Task placeholder</h2>
-                <p>This is the description placeholder</p>
+                <label>
+                    <input type="checkbox">
+                    <span>Task Placeholder</span>
+                </label>
+                <div class="taskRightAlign">
+                    <p class="taskDate">12.2.21</p>
+                    <button><i class="fa fa-pencil " ></i></button>
+                    <button>X</button>
+                </div>
             </div>
-            <div class="task" id="task1">
-                <h2>Task placeholder</h2>
-                <p>This is the description placeholder</p>
-            </div>
-            <div class="task" id="task1">
-                <h2>Task placeholder</h2>
-                <p>This is the description placeholder</p>
-            </div>
-
-
         </div>
         <div id="overlay"></div>
         <script src="main.js"></script>

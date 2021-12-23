@@ -46,6 +46,7 @@ html, body {
     font-size: x-large;
     font-weight: 500;
 }
+
 #header h1{
     text-align: center;
     grid-column-start: 3;
@@ -81,7 +82,6 @@ html, body {
 }
 
 #taskDisplay{
-    background-color: cadetblue;
     height: 100%;
     width: 80%;
     float: right;
@@ -91,16 +91,43 @@ html, body {
 .task{
     margin: 30px 40px 0px 40px;
     border: solid;
-    padding:10px;
+    padding:15px 10px 10px 10px;
     font-family: 'Courier New', Courier, monospace;
     border-radius: 15px;
+    display: flex;
 }
-.task h2{
+.task label {
+    display: block;
+    padding-top: 2px;
+}
+.task label input[type=checkbox] {
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+}
+.task label input[type=checkbox]:checked + span{
+    text-decoration: line-through;
+}
+.task span{
+
+}
+.taskRightAlign{
+    margin-left: auto;
+    align-self: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.taskRightAlign p{
+    margin-top: 0;
+    margin-bottom: 5px;
     display: inline-block;
 }
-.task button{
-    float: right;
-    margin:15px;
+.taskRightAlign button{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.task h2{
+    margin: 0px;
+
 }
 .taskDate{
 }
@@ -142,7 +169,7 @@ label{
     display: inline-block;
     text-align: left;
 }
-input{
+.form input{
     clear: both;
     width: 80%;
 }
