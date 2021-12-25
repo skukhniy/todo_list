@@ -1,8 +1,9 @@
 
-const displayController = (()=>{
+var displayController = (()=>{
     const darkModeBtn = document.getElementById("dark-mode")
     const addBtn = document.getElementById("add")
 
+    //siderbar tabs 
     const homeTab = document.getElementById('homeTab')
     const todayTab = document.getElementById('todayTab')
     const weekTab = document.getElementById('weekTab')
@@ -14,8 +15,21 @@ const displayController = (()=>{
     const overlay = document.getElementById('overlay')
     const btnSubmit = document.getElementById('btnSubmit')
 
-    return{darkModeBtn,addBtn,homeTab,todayTab,weekTab,projectsTab,openModalButton,closeModalButtons,overlay,btnSubmit}
+    //task container
+    const taskDisplay = document.getElementById('taskDisplay')
+
+    //deleteButtons
+    const deleteButton = document.querySelectorAll('.deleteButton')
+    //console.log(deleteButton)
+
+    return{darkModeBtn,addBtn,homeTab,todayTab,weekTab,projectsTab,openModalButton,closeModalButtons,overlay,btnSubmit,taskDisplay,deleteButton}
     
 })();
 
-export default displayController; 
+function dynamicController(){
+    const deleteButton = document.querySelectorAll('.deleteButton')
+    return(deleteButton)
+}
+
+
+export { displayController, dynamicController};
