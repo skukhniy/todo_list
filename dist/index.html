@@ -29,7 +29,7 @@
                         </li>
                         <li>
                             <label for="description">Description:</label>
-                            <textarea id="description" name="description" placeholder="Add the task description..." style="height:100px"></textarea>
+                            <textarea class='description' id="description" name="description" placeholder="Add the task description..." style="height:100px"></textarea>
                         </li>
                         <li>
                             <label for="Date">Due Date:</label>
@@ -44,6 +44,38 @@
                 <button data-modal-close id="btnSubmit">Submit</button>
             </div>
         </div>
+
+        <div class="modal" id="modal2">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button data-modal-close class="close-button">&times;</button>
+            </div>
+            <div class="form">
+                <form id="taskForm2">
+                    <ul>
+                        <li>
+                            <label for="title">Title:</label>
+                            <input type="text" name="title" id="title2" placeholder="Ex: Pickup Dry Cleaning...">
+                        </li>
+                        <li>
+                            <label for="description">Description:</label>
+                            <textarea class='description' id="description2" name="description" placeholder="Add the task description..." style="height:100px"></textarea>
+                        </li>
+                        <li>
+                            <label for="Date">Due Date:</label>
+                            <input type="date" name="date" id="date2">
+                        </li>
+                        <li>
+                            <label for="Project">Project:</label>
+                            <input type="text" name="project" id="project2">
+                        </li>
+                    </ul>
+                </form>
+                <button data-modal-close id="btnSubmit2">Submit</button>
+            </div>
+        </div>
+
+
         <div id="sidebar">
             <h2 id='homeTab'>Home</h2>
             <h2 id='todayTab'>Today</h2>
@@ -62,7 +94,7 @@
                 </label>
                 <div class="taskRightAlign">
                     <p class="taskDate">12.2.21</p>
-                    <button><i class="fa fa-pencil " ></i></button>
+                    <button data-modal-target="#modal"><i class="fa fa-pencil " ></i></button>
                     <button class="deleteButton">X</button>
                 </div>
             </div>

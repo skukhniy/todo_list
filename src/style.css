@@ -173,7 +173,7 @@ label{
     clear: both;
     width: 80%;
 }
-#description{
+.description{
     width:100%
 }
 #date{

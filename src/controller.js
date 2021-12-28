@@ -10,10 +10,28 @@ var displayController = (()=>{
     const projectsTab = document.getElementById('projectsTab')
 
     // query Selectors that select elements related to the modal popup form
-    const openModalButton = document.querySelector('[data-modal-target]')
+    const openModalButton = document.querySelectorAll('[data-modal-target]')
     const closeModalButtons = document.querySelectorAll('[data-modal-close]')
     const overlay = document.getElementById('overlay')
+
+    // selectors for new task form values
+    var title = document.getElementById('title')
+    var description = document.getElementById('description')
+    var date = document.getElementById('date')
+    var project = document.getElementById('project')
+    const taskForm = document.getElementById("taskForm")
     const btnSubmit = document.getElementById('btnSubmit')
+
+    //selectors for the "edit task" modal
+    var title2 = document.getElementById('title2')
+    var description2 = document.getElementById('description2')
+    var date2 = document.getElementById('date2')
+    var project2 = document.getElementById('project2')
+    const taskForm2 = document.getElementById("taskForm2")
+    const btnSubmit2 = document.getElementById('btnSubmit2')
+
+    //selectors for the edit button modal form
+    const editTitle = document.getElementById('title')
 
     //task container
     const taskDisplay = document.getElementById('taskDisplay')
@@ -22,13 +40,17 @@ var displayController = (()=>{
     const deleteButton = document.querySelectorAll('.deleteButton')
     //console.log(deleteButton)
 
-    return{darkModeBtn,addBtn,homeTab,todayTab,weekTab,projectsTab,openModalButton,closeModalButtons,overlay,btnSubmit,taskDisplay,deleteButton}
+    return{darkModeBtn,addBtn,homeTab,todayTab,weekTab,projectsTab,
+        openModalButton,closeModalButtons,overlay,btnSubmit,taskDisplay,deleteButton,
+        title, description,date,project,taskForm,
+        title2, description2, date2, project2, taskForm2,btnSubmit2}
     
 })();
 
 function dynamicController(){
+    const editButton = document.querySelectorAll('[data-modal-target]')
     const deleteButton = document.querySelectorAll('.deleteButton')
-    return(deleteButton)
+    return ([editButton,deleteButton])
 }
 
 
