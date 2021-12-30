@@ -2,6 +2,7 @@ import { displayController } from "./controller.js";
 import { editBtnDOM } from "./DOM_function.js";
 import { deleteBtnDOM } from "./DOM_function.js";
 import { dynamicController } from "./controller.js";
+import { projectArray } from "./factory.js";
 
 function renderTasks(array){
     if (array.length === 0){ //returns an empty display if the array is empty
@@ -39,19 +40,52 @@ function renderTasks(array){
             const taskContainer = displayController.taskDisplay
             taskContainer.appendChild(newTask)
 
-            //adds event listeners for the new edit buttons
-            const editSelectors = dynamicController()[0];
-            editBtnDOM(editSelectors)
-        
-            //adds event listeners for the new delete buttons
-            const deleteSelectors = dynamicController()[1];
-            deleteBtnDOM(deleteSelectors); 
-
         })
+        //adds event listeners for the new edit buttons
+        const editSelectors = dynamicController()[0];
+        editBtnDOM(editSelectors)
+    
+        //adds event listeners for the new delete buttons
+        const deleteSelectors = dynamicController()[1];
+        deleteBtnDOM(deleteSelectors); 
     }
 }
+//renders projects on the sidebar and in the selection part of the modal window
+function renderProjects(array){
+    if (array.length === 0){
+        console.log("project array is empty")
+        console.log(array)
+        return;
+    }else{
+        displayProjects(array)
+        appendProjects(array)
+    }
+}
+//loops through each project in the array and adds it to the sidebar
+function displayProjects(array){
+    document.querySelectorAll('.projectFolder').forEach(e => e.remove())
+    array.forEach((project,index)=>{
+        const newDiv = document.createElement('div')
+        newDiv.classList.add('projectFolder')
+        newDiv.innerHTML = "<h4>" + project + "</h4>"
+        const dropDown = displayController.projectsDropdown
+        dropDown.appendChild(newDiv)
+    })
+}
+//loops through each project in the array and adds selection options for the modal windows
+function appendProjects(array){
+    //reset project selection
+    displayController.project.innerHTML = "<option>Choose a Project:</option>"
+    displayController.project2.innerHTML = "<option>Choose a Project:</option>"
+    //append each project as a selection option
+    array.forEach(project => {
+        displayController.project.innerHTML += "<option>" + project + "</option"
+        displayController.project2.innerHTML += "<option>" + project + "</option"
+    })
 
-export default renderTasks
+}
+
+export {renderTasks,renderProjects}
 
 // x.classList.add('')
 // document.createElement('')

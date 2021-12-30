@@ -1,21 +1,43 @@
 
 import { displayController } from './controller.js'
 import './factory.js'
-import { localArray, todoFactory } from './factory.js'
-import renderTasks from './render.js'
-
+import { localArray, projectArray, todoFactory } from './factory.js'
+import { renderProjects,renderTasks } from './render.js'
 
 let globalIndex = 0
 
 //functions for the modal window
-
-
 
 // displayController.openModalButton.addEventListener('click',() =>{
 //     const modal = document.querySelector(displayController.openModalButton.dataset.modalTarget)
 //     console.log(modal)
 //     openModal(modal)
 // })
+
+//change color of sidebar tab when clicked
+const sidebarArray = [displayController.homeTab, displayController.todayTab, displayController.weekTab]
+sidebarArray.forEach(button=>{
+    button.addEventListener("click",()=>{
+        document.querySelectorAll(".tabColor").forEach(header =>{
+            header.classList.remove("tabColor")
+        })
+        displayController.projectsDropdown.classList.remove("show")
+        if (button != displayController.homeTab){
+            button.classList.toggle("tabColor")
+    }
+})});
+
+//sidebar projects tab
+function dropDown(){
+    displayController.projectsDropdown.classList.toggle("show")
+    sidebarArray.forEach(header =>{
+        header.classList.remove("tabColor")
+    })
+    displayController.projectsTab.classList.toggle("tabColor")
+}
+displayController.projectsTab.addEventListener("click",()=>dropDown());
+
+
 // removes the active class so the form goes down
 displayController.closeModalButtons.forEach(button => {
     button.addEventListener('click',() =>{
@@ -25,46 +47,16 @@ displayController.closeModalButtons.forEach(button => {
 })
 //changes the class so that the modal css/html will appear
 function openModal(modal){
-    if(modal == null) return
+    if(modal == null) return;
     modal.classList.add('active')
-    overlay.classList.add('active')
+    displayController.overlay.classList.add('active')
 }
 //changes the class so that the modal css/html will disappear
 function closeModal(modal){
     if(modal == null) return
     modal.classList.remove('active')
-    overlay.classList.remove('active')
+    displayController.overlay.classList.remove('active')
 }
-
-// on clicking submit the inputs will be gathered to create a new object.
-displayController.btnSubmit.addEventListener('click',()=>{
-    console.log('title =')
-    var title = displayController.title.value
-    // console.log(title)
-    var description = displayController.description.value
-    // console.log(description)
-    var date = displayController.date.value
-    // console.log(date)
-    var project = displayController.project.value
-    // console.log(project)
-    var task = todoFactory(title,description,date,project) //create new task obj
-    localArray.push(task) // push task to local array
-    displayController.taskForm.reset() //reset the form
-    console.log(localArray)
-    renderTasks(localArray)
-});
-
-displayController.btnSubmit2.addEventListener('click',()=>{
-    localArray[globalIndex]['title'] = displayController.title2.value
-    localArray[globalIndex]['description'] = displayController.description2.value
-    localArray[globalIndex]['dueDate'] = displayController.date2.value
-    localArray[globalIndex]['project'] = displayController.project2.value
-    console.log(globalIndex)
-    console.log(localArray[globalIndex])
-    console.log(localArray)
-    renderTasks(localArray)
-});
-
 //will add an active class so the form pops up
 displayController.openModalButton.forEach(button => {
     console.log(button)
@@ -73,6 +65,31 @@ displayController.openModalButton.forEach(button => {
         console.log(modal)
         openModal(modal)
     });
+})
+
+// on clicking submit the inputs will be gathered to create a new object.
+displayController.btnSubmit.addEventListener('click',()=>{
+    var title = displayController.title.value
+    var description = displayController.description.value
+    var date = displayController.date.value
+    var project = displayController.project.value
+    var task = todoFactory(title,description,date,project) //create new task obj
+    localArray.push(task) // push task to local array
+    displayController.taskForm.reset() //reset the form
+    renderTasks(localArray)
+});
+
+displayController.btnSubmit2.addEventListener('click',()=>{
+    localArray[globalIndex]['title'] = displayController.title2.value
+    localArray[globalIndex]['description'] = displayController.description2.value
+    localArray[globalIndex]['dueDate'] = displayController.date2.value
+    localArray[globalIndex]['project'] = displayController.project2.value
+    renderTasks(localArray)
+});
+
+displayController.btnSubmit3.addEventListener('click',()=>{
+    projectArray.push(displayController.ProjName.value)
+    renderProjects(projectArray)
 })
 
 //function to pass through the event listener for the edit buttons
@@ -107,7 +124,6 @@ function deleteBtnFunc(event){
     const clickedEl = event.target; //returns the selector of the clicked item
     const taskIndex = cleanId(clickedEl); //clean the id to grab the index
     localArray[taskIndex] = undefined; //keep index space but remove object (delete item)
-
     renderTasks(localArray); //render to apply changes
 }
 // quick function to clean the task id's and return a useable index int.

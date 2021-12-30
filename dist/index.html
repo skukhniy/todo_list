@@ -5,6 +5,7 @@
       <title>To Do List</title>
     </head>
     <body>  
+        <div id="overlay"></div>
         <div id="content"></div>
         <div id="header">
 
@@ -37,11 +38,13 @@
                         </li>
                         <li>
                             <label for="Project">Project:</label>
-                            <input type="text" name="project" id="project">
+                            <select name="project" id="project" class ="projectSelection" >
+                                <option>Choose a Project:</option>
+                            </select>
                         </li>
                     </ul>
                 </form>
-                <button data-modal-close id="btnSubmit">Submit</button>
+                <button data-modal-close id="btnSubmit" class="btnSubmit">Submit</button>
             </div>
         </div>
 
@@ -67,21 +70,46 @@
                         </li>
                         <li>
                             <label for="Project">Project:</label>
-                            <input type="text" name="project" id="project2">
+                            <select name="project" id="project2" class ="projectSelection" >
+                                <option>Choose a Project:</option>
+                            </select>
                         </li>
                     </ul>
                 </form>
-                <button data-modal-close id="btnSubmit2">Submit</button>
+                <button data-modal-close id="btnSubmit2" class="btnSubmit">Submit</button>
             </div>
         </div>
-
+        <div class="modal" id="modal3">
+            <div class="modal-header">
+                <h3>Add a New Project</h3>
+                <button data-modal-close class="close-button">&times;</button>
+            </div>
+            <div class="form">
+                <form id="taskForm3">
+                    <ul>
+                        <li>
+                            <label for="title">Project Name:</label>
+                            <input type="text" name="ProjectName" id="ProjectName" placeholder="Ex: Homework, Work Tasks, etc...">
+                        </li>
+                    </ul>
+                </form>
+                <button data-modal-close id="btnSubmit3" class="btnSubmit">Submit</button>
+            </div>
+        </div>
 
         <div id="sidebar">
             <h2 id='homeTab'>Home</h2>
             <h2 id='todayTab'>Today</h2>
             <h2 id='weekTab'>Week</h2>
-            <h2 id='projectsTab'>Projects</h2>
-            <div id="addProject">
+            <div class="dropdown">
+                <h2 id='projectsTab' class="dropbtn">Projects</h2>
+                <div id="myDropdown" class="dropdown-content">
+                    <div class="projectFolder">
+                        <h4>Project Placeholder</h4>
+                    </div>
+                </div>
+            </div>
+            <div data-modal-target="#modal3" id="addProject">
                 <p>+</p>
             </div>
         </div>
@@ -99,7 +127,7 @@
                 </div>
             </div>
         </div>
-        <div id="overlay"></div>
+
         <script src="main.js"></script>
     </body>
 </html>

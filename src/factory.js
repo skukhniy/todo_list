@@ -26,8 +26,8 @@ var testDict4 = {
     project:""
 }
 let localArray = [testDict,testDict2,testDict3,testDict4]
-let projectArray = []
-console.log(localArray)
+let projectArray = ['Project 1','Project 2','Project 3']
+console.log(projectArray)
 
 const todoFactory = (title,description,dueDate,project) =>{
     return{
