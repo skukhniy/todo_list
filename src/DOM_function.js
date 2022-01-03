@@ -38,7 +38,6 @@ displayController.homeTab.addEventListener('click',()=>{
 //functionality + filter for the TODAY header
 displayController.todayTab.addEventListener("click",()=>{
     const currentDate = date.toLocaleDateString('en-CA')
-    console.log(currentDate)
     renderTasks(localArray,currentDate,"TODAY")
 })
 //functionality+filter for the WEEK Header
@@ -59,7 +58,6 @@ function filterProject(htmlCollection){
     htmlCollection.forEach(header => {
         header.addEventListener('click',()=>{
             const filter = header.innerHTML;
-            console.log(localArray)
             renderTasks(localArray,filter,"PROJECT");
         })
     })}
@@ -85,10 +83,8 @@ function closeModal(modal){
 }
 //will add an active class so the form pops up
 displayController.openModalButton.forEach(button => {
-    console.log(button)
     button.addEventListener('click',() =>{
         const modal = document.querySelector(button.dataset.modalTarget)
-        console.log(modal)
         openModal(modal)
     });
 })
@@ -101,6 +97,7 @@ displayController.btnSubmit.addEventListener('click',()=>{
     var project = displayController.project.value
     var task = todoFactory(title,description,date,project) //create new task obj
     localArray.push(task) // push task to local array
+    localStorage.setItem('localArray',JSON.stringify(localArray))//update local storage
     displayController.taskForm.reset() //reset the form
     renderTasks(localArray)
 });
@@ -110,11 +107,13 @@ displayController.btnSubmit2.addEventListener('click',()=>{
     localArray[globalIndex]['description'] = displayController.description2.value
     localArray[globalIndex]['dueDate'] = displayController.date2.value
     localArray[globalIndex]['project'] = displayController.project2.value
+    localStorage.setItem('localArray',JSON.stringify(localArray))//update local storage
     renderTasks(localArray)
 });
 //Gather information for submitting the "Add Project" form
 displayController.btnSubmit3.addEventListener('click',()=>{
     projectArray.push(displayController.ProjName.value)
+    localStorage.setItem('projectArray',JSON.stringify(projectArray))//update local storage
     renderProjects(projectArray)
 })
 
@@ -122,18 +121,15 @@ displayController.btnSubmit3.addEventListener('click',()=>{
 function editBtnFunc(event){
     const button = event.target.closest('button');
     if(button == null) return;
-    console.log(button)
     const modal = document.querySelector(button.dataset.modalTarget)
-    console.log(modal)
     const taskId = cleanId(button)
     globalIndex = taskId //adjusts the global index variable
-
-    console.log(displayController.title2.value)
 
     displayController.title2.value = localArray[taskId].title
     displayController.description2.value = localArray[taskId].description
     displayController.date2.value = localArray[taskId].dueDate
     displayController.project2.value = localArray[taskId].project
+    localStorage.setItem('localArray',JSON.stringify(localArray))//update local storage
 
     openModal(modal)
 };
@@ -151,6 +147,7 @@ function deleteBtnFunc(event){
     const clickedEl = event.target; //returns the selector of the clicked item
     const taskIndex = cleanId(clickedEl); //clean the id to grab the index
     localArray[taskIndex] = undefined; //keep index space but remove object (delete item)
+    localStorage.setItem('localArray',JSON.stringify(localArray))//update local storage
     renderTasks(localArray); //render to apply changes
 }
 // quick function to clean the task id's and return a useable index int.

@@ -9,18 +9,16 @@ import { fi } from "date-fns/locale";
 //function that will filter which tasks need to be created
 function renderTasks(array,filter=null,filterType){
     if (array.length === 0){ //returns an empty display if the array is empty
-        console.log('if')
         return;
     }else{
         document.querySelectorAll('.task').forEach(e => e.remove())//resets the display
         array.forEach((task,index)=>{
-            if (task === undefined){return;} //skip over deleted tasks
+            if (task === undefined || task === null){return;} //skip over deleted tasks
             else if(filter === null){ //if there is no filter, render all tasks
                 renderTask(task,index)
             }else if(task.dueDate === filter && filterType =="TODAY"){
                 renderTask(task,index)
             }else if(convertToMS(task.dueDate) >= filter[0] && filter[1] >= convertToMS(task.dueDate) && filterType =="WEEK"){
-                console.log(task.dueDate)
                 renderTask(task,index)
             }else if(task.project === filter && filterType =="PROJECT"){// if there is a filter, only render that task
                 renderTask(task,index)
@@ -73,7 +71,6 @@ function renderTask(task,index){
 function renderProjects(array){
     if (array.length === 0){
         console.log("project array is empty")
-        console.log(array)
         return;
     }else{
         displayProjects(array)

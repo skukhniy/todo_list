@@ -5,7 +5,5 @@ import { renderTasks } from './render.js'
 import { renderProjects } from './render.js'
 import{projectArray} from './factory'
 
-console.log('Hi')
-console.log(localArray)
 renderTasks(localArray);
 renderProjects(projectArray);
