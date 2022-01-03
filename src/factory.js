@@ -5,25 +5,25 @@ var testDict = {
     title: "test",
     description: "wee",
     dueDate: "2021-12-23",
-    project:""
+    project:"Project 1"
 }
 var testDict2 = {
     title: "test2",
     description: "weeweeweewee",
     dueDate: "2022-01-23",
-    project:""
+    project:"Project 2"
 }
 var testDict3 = {
     title: "test",
     description: "wee",
     dueDate: "2021-12-23",
-    project:""
+    project:"Project 3"
 }
 var testDict4 = {
     title: "test",
     description: "wee",
     dueDate: "2021-12-23",
-    project:""
+    project:"Project 3"
 }
 let localArray = [testDict,testDict2,testDict3,testDict4]
 let projectArray = ['Project 1','Project 2','Project 3']

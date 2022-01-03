@@ -57,8 +57,10 @@ function dynamicController(){
     const editButton = document.querySelectorAll('[data-modal-target]')
     const deleteButton = document.querySelectorAll('.deleteButton')
     const projectSelectors = document.querySelectorAll('.selectProject')
-    return ([editButton,deleteButton,projectSelectors])
+    const projectHeaders = document.querySelectorAll('.selectProject')
+    return ([editButton,deleteButton,projectSelectors,projectHeaders])
 }
 
+const date = new Date()
 
-export { displayController, dynamicController};
+export { displayController, dynamicController,date};

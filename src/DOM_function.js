@@ -1,18 +1,12 @@
 
-import { displayController } from './controller.js'
+import { displayController, dynamicController } from './controller.js'
 import './factory.js'
 import { localArray, projectArray, todoFactory } from './factory.js'
 import { renderProjects,renderTasks } from './render.js'
+import {date} from './controller.js'
+import {format, startOfWeek, endOfWeek} from 'date-fns'
 
 let globalIndex = 0
-
-//functions for the modal window
-
-// displayController.openModalButton.addEventListener('click',() =>{
-//     const modal = document.querySelector(displayController.openModalButton.dataset.modalTarget)
-//     console.log(modal)
-//     openModal(modal)
-// })
 
 //change color of sidebar tab when clicked
 const sidebarArray = [displayController.homeTab, displayController.todayTab, displayController.weekTab]
@@ -37,6 +31,38 @@ function dropDown(){
 }
 displayController.projectsTab.addEventListener("click",()=>dropDown());
 
+//func + filter for the HOME Header
+displayController.homeTab.addEventListener('click',()=>{
+    renderTasks(localArray)
+})
+//functionality + filter for the TODAY header
+displayController.todayTab.addEventListener("click",()=>{
+    const currentDate = date.toLocaleDateString('en-CA')
+    console.log(currentDate)
+    renderTasks(localArray,currentDate,"TODAY")
+})
+//functionality+filter for the WEEK Header
+displayController.weekTab.addEventListener("click",()=>{
+    const start = convertToMS(format(startOfWeek(date),'yyyy-MM-dd'))
+    const end = convertToMS(format(endOfWeek(date),'yyyy-MM-dd'))
+    const weekFilter = [start,end]
+    renderTasks(localArray,weekFilter,"WEEK")
+})
+function convertToMS(dateString){
+    let d = dateString.split("-");
+    let dat = new Date(d[1]+"-"+d[2]+"-"+d[0]);
+    return dat.getTime();
+}
+
+//add dom functionality to each project header
+function filterProject(htmlCollection){
+    htmlCollection.forEach(header => {
+        header.addEventListener('click',()=>{
+            const filter = header.innerHTML;
+            console.log(localArray)
+            renderTasks(localArray,filter,"PROJECT");
+        })
+    })}
 
 // removes the active class so the form goes down
 displayController.closeModalButtons.forEach(button => {
@@ -78,7 +104,7 @@ displayController.btnSubmit.addEventListener('click',()=>{
     displayController.taskForm.reset() //reset the form
     renderTasks(localArray)
 });
-
+//Gather information for submitting the "edit Task" Modal form
 displayController.btnSubmit2.addEventListener('click',()=>{
     localArray[globalIndex]['title'] = displayController.title2.value
     localArray[globalIndex]['description'] = displayController.description2.value
@@ -86,7 +112,7 @@ displayController.btnSubmit2.addEventListener('click',()=>{
     localArray[globalIndex]['project'] = displayController.project2.value
     renderTasks(localArray)
 });
-
+//Gather information for submitting the "Add Project" form
 displayController.btnSubmit3.addEventListener('click',()=>{
     projectArray.push(displayController.ProjName.value)
     renderProjects(projectArray)
@@ -112,6 +138,7 @@ function editBtnFunc(event){
     openModal(modal)
 };
 
+//
 function editBtnDOM(htmlCollection){
     Array.from(htmlCollection).forEach(button =>{
         button.removeEventListener("click",editBtnFunc)
@@ -145,4 +172,4 @@ function deleteBtnDOM(htmlCollection){
 
 
 
-export {deleteBtnDOM, editBtnDOM};
+export {deleteBtnDOM, editBtnDOM, filterProject,convertToMS};
