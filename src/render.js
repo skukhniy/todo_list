@@ -1,10 +1,5 @@
-import { displayController } from "./controller.js";
-import { editBtnDOM } from "./DOM_function.js";
-import { deleteBtnDOM } from "./DOM_function.js";
-import { dynamicController } from "./controller.js";
-import { projectArray } from "./factory.js";
-import {filterProject, convertToMS} from "./DOM_function.js";
-import { fi } from "date-fns/locale";
+import { displayController,dynamicController } from "./controller.js";
+import { editBtnDOM,deleteBtnDOM,filterProject,convertToMS } from "./DOM_function.js";
 
 //function that will filter which tasks need to be created
 function renderTasks(array,filter=null,filterType){

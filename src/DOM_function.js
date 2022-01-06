@@ -6,6 +6,7 @@ import { renderProjects,renderTasks } from './render.js'
 import {date} from './controller.js'
 import {format, startOfWeek, endOfWeek} from 'date-fns'
 
+//global storage for the current task index
 let globalIndex = 0
 
 //change color of sidebar tab when clicked
@@ -47,11 +48,13 @@ displayController.weekTab.addEventListener("click",()=>{
     const weekFilter = [start,end]
     renderTasks(localArray,weekFilter,"WEEK")
 })
+//convert a datestring to miliseconds
 function convertToMS(dateString){
     let d = dateString.split("-");
     let dat = new Date(d[1]+"-"+d[2]+"-"+d[0]);
     return dat.getTime();
 }
+
 
 //add dom functionality to each project header
 function filterProject(htmlCollection){
@@ -88,6 +91,7 @@ displayController.openModalButton.forEach(button => {
         openModal(modal)
     });
 })
+
 
 // on clicking submit the inputs will be gathered to create a new object.
 displayController.btnSubmit.addEventListener('click',()=>{
@@ -134,7 +138,7 @@ function editBtnFunc(event){
     openModal(modal)
 };
 
-//
+//resets all edit button DOMs
 function editBtnDOM(htmlCollection){
     Array.from(htmlCollection).forEach(button =>{
         button.removeEventListener("click",editBtnFunc)

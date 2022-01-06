@@ -44,7 +44,6 @@ var displayController = (()=>{
 
     //deleteButtons
     const deleteButton = document.querySelectorAll('.deleteButton')
-    //console.log(deleteButton)
 
     return{darkModeBtn,addBtn,homeTab,todayTab,weekTab,projectsTab, projectsDropdown, addProject,
         openModalButton,closeModalButtons,overlay,btnSubmit,taskDisplay,deleteButton,
@@ -53,6 +52,7 @@ var displayController = (()=>{
     
 })();
 
+//controller for elements that are created after the page first loads (new tasks/projects etc)
 function dynamicController(){
     const editButton = document.querySelectorAll('[data-modal-target]')
     const deleteButton = document.querySelectorAll('.deleteButton')

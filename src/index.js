@@ -1,9 +1,7 @@
 import './style.css'
 import './DOM_function.js'
-import { localArray } from './factory'
-import { renderTasks } from './render.js'
-import { renderProjects } from './render.js'
-import{projectArray} from './factory'
+import { localArray,projectArray } from './factory'
+import { renderTasks,renderProjects } from './render.js'
 
 renderTasks(localArray);
 renderProjects(projectArray);

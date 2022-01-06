@@ -1,6 +1,11 @@
+// factory which creates task objects
+const todoFactory = (title,description,dueDate,project) =>{
+    return{
+        title,description,dueDate,project
+    }
+};
 
-//let localArray = []
-
+//default objects to pop up during the first page load
 var testDict = {
     title: "Finish Cold War Report",
     description: "Needs to be 8 pages.",
@@ -25,26 +30,19 @@ var testDict4 = {
     dueDate: "2021-12-27",
     project:"Homework"
 }
+
 let defaultArray = [testDict,testDict2,testDict3,testDict4]
-let defaultProjects = ['Chores','Homework','Sports']
+let defaultProjects = ['Chores','Homework','Sports'] //default projects
+
+//initalize localStorage Items if localStorage is empty
 if (localStorage.hasOwnProperty("projectArray") === false){
-    console.log("hi")
     localStorage.setItem('projectArray',JSON.stringify(defaultProjects))
-    console.log(localStorage.projectArray)
 }
 if (localStorage.hasOwnProperty("localArray") === false){
-    console.log("hi")
     localStorage.setItem('localArray',JSON.stringify(defaultArray))
-    console.log(localStorage.localArray)
 }
-let localArray = JSON.parse(localStorage.getItem("localArray"))
-let projectArray = JSON.parse(localStorage.getItem("projectArray"))
-console.log(localArray)
-
-const todoFactory = (title,description,dueDate,project) =>{
-    return{
-        title,description,dueDate,project
-    }
-};
+//values that will be updated each time the tasks are edited/added
+let localArray = JSON.parse(localStorage.getItem("localArray"));
+let projectArray = JSON.parse(localStorage.getItem("projectArray"));
 
 export { todoFactory, localArray, testDict, projectArray};
